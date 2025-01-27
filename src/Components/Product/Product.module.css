@@ -1,0 +1,21 @@
+.product {
+    grid-area: p;
+    background-color: #5c5c9c;
+    height: 100%;
+    text-align: center;
+}
+
+.title {
+    margin: 1vh auto 0;
+}
+
+.button {
+    margin: 20px auto 0;
+}
+
+.showButton {
+    margin-left: 10px;
+    width: 30%;
+    height: 50px;
+    margin-bottom: 70px;
+}

@@ -1,0 +1,11 @@
+.filters {
+    background-color: #603c3c;
+    grid-area: f;
+    justify-content: center;
+    text-align: center;
+    border-right: 0.5vw solid black;
+}
+
+.button {
+    margin: 20px auto 0;
+}
