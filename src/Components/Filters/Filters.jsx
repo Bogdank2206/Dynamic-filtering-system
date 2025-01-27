@@ -33,4 +33,3 @@ const mstp = (state) => ({
 })
 
 export default connect(mstp, {getUsersData})(Filters);
-// export default Filters;
