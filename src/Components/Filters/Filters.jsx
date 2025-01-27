@@ -16,6 +16,7 @@ const Filters = ({users, getUsersData, setShowFilters}) => {
     useEffect(() => {
         getUsersData(users);
     }, [users, getUsersData]);
+    console.log('after func');
 
     return (
         <div className={s.filters}>
