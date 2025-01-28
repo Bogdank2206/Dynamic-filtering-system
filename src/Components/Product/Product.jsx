@@ -35,7 +35,8 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
 
     useEffect(() => {
         setIsNeedChanged(true);
-    }, [filters.brands, filters.categories, filters.cost.minCost, filters.cost.maxCost, filters.cost.maxPrice, filters.minRating])
+    }, [filters.brands, filters.categories, filters.cost.minCost,
+        filters.cost.maxCost, filters.cost.maxPrice, filters.minRating])
 
     useEffect(() => {
         if (isNeedChanged) {
