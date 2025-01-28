@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PriceRangeSlider from "./PriceRangeSlider/PriceRangeSlider";
 import Brands from "./Brands/Brands";
 import Categories from "./Categories/Categories";
@@ -8,7 +8,6 @@ import {getUsersData} from "../../State manager/FiltersReducer";
 import {connect} from "react-redux";
 
 const Filters = ({users, getUsersData, setShowFilters}) => {
-    console.log('filters');
     const onClick = () => {
         setShowFilters(0);
     }
@@ -16,10 +15,23 @@ const Filters = ({users, getUsersData, setShowFilters}) => {
     useEffect(() => {
         getUsersData(users);
     }, [users, getUsersData]);
-    console.log('after func');
+
+    const [bottomRight, setBottomRight] = useState(false);
+    useEffect(() => {
+        setBottomRight(window.innerWidth > 600);
+    }, [])
+    useEffect(() => {
+        const change = () => {
+            setBottomRight(window.innerWidth > 600);
+        }
+        window.addEventListener('resize', change);
+        return () => {
+            window.removeEventListener('resize', change);
+        }
+    })
 
     return (
-        <div className={s.filters}>
+        <div style={{borderRight: bottomRight && '0.5vw solid black'}} className={s.filters}>
             <button className={s.button} onClick={onClick}>Hide Filters</button>
             <Categories/>
             <Brands/>

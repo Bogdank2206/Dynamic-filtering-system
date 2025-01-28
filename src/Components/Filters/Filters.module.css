@@ -3,10 +3,11 @@
     grid-area: f;
     justify-content: center;
     text-align: center;
-    border-right: 0.5vw solid black;
+
     border-top: 0.5vw solid black;
+    height: 100%;
 }
 
 .button {
-    margin: 20px auto 0;
+    margin: 3% auto 0;
 }
