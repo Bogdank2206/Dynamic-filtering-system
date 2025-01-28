@@ -3,6 +3,7 @@
     background-color: #5c5c9c;
     height: 100%;
     text-align: center;
+    border-top: 0.5vw solid black;
 }
 
 .title {

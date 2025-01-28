@@ -4,6 +4,7 @@
     justify-content: center;
     text-align: center;
     border-right: 0.5vw solid black;
+    border-top: 0.5vw solid black;
 }
 
 .button {

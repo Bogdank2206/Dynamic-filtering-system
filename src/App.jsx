@@ -2,6 +2,7 @@ import s from "./App.module.css";
 import Product from "./Components/Product/Product";
 import React, {useState, Suspense} from "react";
 import filtersStyle from './Components/Filters/Filters.module.css'
+import Header from "./Components/Header/Header";
 
 const Filters = React.lazy(() => import("./Components/Filters/Filters"));
 
@@ -15,6 +16,7 @@ const App = () => {
 
     return (
         <div style={styles} className={s.app}>
+            <Header/>
             {
                 showFilters
                     ? (
