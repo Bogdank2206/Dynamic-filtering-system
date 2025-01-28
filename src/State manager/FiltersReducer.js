@@ -19,6 +19,7 @@ const initialState = {
 }
 
 const FiltersReducer = (state = initialState, action) => {
+    console.log('filters reducer', action);
     switch (action.type) {
         case SET_MIN_COST:
             return {

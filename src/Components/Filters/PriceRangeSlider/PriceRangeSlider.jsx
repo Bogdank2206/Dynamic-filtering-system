@@ -1,7 +1,20 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import s from './PriceRangeSlider.module.css'
 import {connect} from "react-redux";
 import {setMinCost, setMaxCost} from "../../../State manager/FiltersReducer";
+
+const useDebounced = (value, delay = 500) => {
+    const [debouncedValue, setDebouncedValue] = useState(undefined);
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay)
+        return () => {
+            clearTimeout(id);
+        }
+    })
+    return debouncedValue;
+}
 
 const Numbers = ({minCost, maxCost, maxPrice, setMinCost, setMaxCost}) => {
     const setMin = (event) => {
@@ -72,11 +85,40 @@ const Slider = ({minCost, maxCost, maxPrice, setMinCost, setMaxCost}) => {
 }
 
 const PriceRangeSlider = (props) => {
+    const [minCost, setMinCost] = useState(0);
+    const [maxCost, setMaxCost] = useState(props.maxCost);
+
+    const debouncedMinCost = useDebounced(minCost);
+    useEffect(() => {
+        if (debouncedMinCost !== undefined) {
+            props.setMinCost(debouncedMinCost);
+        }
+    }, [debouncedMinCost]);
+    const debouncedMaxCost = useDebounced(maxCost);
+    useEffect(() => {
+        if (debouncedMaxCost !== undefined && debouncedMaxCost !== -1) {
+            props.setMaxCost(debouncedMaxCost);
+        }
+    }, [debouncedMaxCost]);
+    useEffect(() => {
+        if (maxCost === -1 && props.maxCost !== -1) {
+            setMaxCost(props.maxCost);
+        }
+    }, [props.maxCost]);
+
     return (
         <div className={s.rangeContainer}>
             <b>Price Slider</b>
-            <Numbers {...props}/>
-            <Slider {...props}/>
+            <Numbers minCost={minCost}
+                     maxCost={maxCost}
+                     maxPrice={props.maxPrice}
+                     setMinCost={setMinCost}
+                     setMaxCost={setMaxCost}/>
+            <Slider minCost={minCost}
+                    maxCost={maxCost}
+                    maxPrice={props.maxPrice}
+                    setMinCost={setMinCost}
+                    setMaxCost={setMaxCost}/>
         </div>
     )
 }

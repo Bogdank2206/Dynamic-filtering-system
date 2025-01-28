@@ -7,7 +7,6 @@ import Header from "./Components/Header/Header";
 const Filters = React.lazy(() => import("./Components/Filters/Filters"));
 
 const change = (showFilters, setGridTemplateAreas) => {
-    console.log(window.innerWidth);
     if (window.innerWidth > 480) {
         if (window.innerWidth > 600) {
             setGridTemplateAreas(`"h h"\n"${showFilters ? 'f' : 'p'} p"`);
