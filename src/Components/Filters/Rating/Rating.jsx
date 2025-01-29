@@ -11,7 +11,8 @@ const Rating = ({minRating, setMinRating}) => {
             {
                 numbers.map(num => (
                     <div key={num}>
-                        <input type='checkbox'
+                        <input id={num}
+                               type='checkbox'
                                checked={num === minRating}
                                onChange={() => {
                                    num === minRating
@@ -30,4 +31,10 @@ const mapStateToProps = (state) => ({
     minRating: state.filters.minRating,
 })
 
-export default connect(mapStateToProps, {setMinRating})(Rating);
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+    ...stateProps,
+    ...dispatchProps,
+    ...ownProps,
+})
+
+export default connect(mapStateToProps, {setMinRating}, mergeProps)(Rating);

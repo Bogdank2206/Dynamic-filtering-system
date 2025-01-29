@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import {render, screen} from '@testing-library/react';
+import React from 'react';
+import {act} from 'react';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('Render without crashing', async () => {
+    await act(() => {
+        render(<App/>);
+    });
+    expect(screen.getByText(/Header/i)).toBeInTheDocument();
 });

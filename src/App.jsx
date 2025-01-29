@@ -3,6 +3,8 @@ import Product from "./Components/Product/Product";
 import React, {useState, Suspense, useEffect} from "react";
 import filtersStyle from './Components/Filters/Filters.module.css'
 import Header from "./Components/Header/Header";
+import {Provider} from "react-redux";
+import store from './State manager/store'
 
 const Filters = React.lazy(() => import("./Components/Filters/Filters"));
 
@@ -56,4 +58,10 @@ const App = () => {
     )
 }
 
-export default App;
+const AppContainer = () => (
+    <Provider store={store}>
+        <App/>
+    </Provider>
+)
+
+export default AppContainer;
