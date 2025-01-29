@@ -3,7 +3,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import filtersReducer from "../../../State manager/FiltersReducer";
 import Rating from "./Rating";
 import {describe, expect, test} from "@jest/globals";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 
 const store = configureStore({
     reducer: {
@@ -18,8 +18,9 @@ describe("Rating component", () => {
                 <Rating/>
             </Provider>
         )
-        const checkBox = screen.getAllByRole("checkbox");
-        expect(checkBox).toBeDefined();
+        const checkBoxes = screen.getAllByRole("checkbox");
+        expect(checkBoxes).toBeDefined();
+        expect(checkBoxes).toHaveLength(4);
     })
     test("Select rating buttons work correctly", () => {
         const mockSetMinRating = jest.fn();
