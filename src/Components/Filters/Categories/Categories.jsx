@@ -10,7 +10,7 @@ const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
     useEffect(() => {
         if (length < step) {
             setLength(step);
-        } else if (categoriesLength < length) {
+        } else if (categoriesLength && categoriesLength < length) {
             setLength(categoriesLength);
         }
     }, [length, categoriesLength]);
@@ -24,7 +24,6 @@ const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
             setLength(length - step);
         }
     }
-
     return (
         !categories
             ? <div className={s.categories}>Categories</div>
@@ -32,14 +31,16 @@ const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
                 <div className={s.categories}>
                     <b>Categories</b>
                     {
-                        Object.keys(categories).slice(0, length).map(name => (
-                            <CheckBox key={name}
+                        Array.from({...Object.keys(categories), length}, (name, idx) => (
+                            <CheckBox key={idx}
                                       name={name}
                                       isChecked={categories[name]}
                                       toggleChecked={toggleCategoryChecked}/>
                         ))
                     }
-                    {length < categoriesLength && <button className={s.button} onClick={ShowMore}>Show more</button>}
+
+                    {length < categoriesLength && <button className={s.button}
+                                                          onClick={ShowMore}>Show more</button>}
                     {length > step && <button className={s.button} onClick={Hide}>Hide</button>}
                 </div>
             )
@@ -51,4 +52,21 @@ const mstp = (state) => ({
     categories: state.filters.categories,
 })
 
-export default connect(mstp, {toggleCategoryChecked})(Categories);
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+    ...stateProps,
+    ...dispatchProps,
+    ...ownProps,
+})
+
+export default connect(mstp, {toggleCategoryChecked}, mergeProps)(Categories);
+
+// const sixButtons = () => {
+//     return <div>
+//         {Array.from({length: 6}, (_, idx) => {
+//             return <input key={idx} type={'checkbox'}/>
+//         })}
+//     </div>
+// }
+
+// export default sixButtons;
+

@@ -5,10 +5,17 @@ import Rating from "./Rating";
 import {describe, expect, test} from "@jest/globals";
 import {fireEvent, render, screen} from "@testing-library/react";
 
+const preloadedState = {
+    filters: {
+        minRating: 0,
+    }
+}
+
 const store = configureStore({
     reducer: {
         filters: filtersReducer,
     },
+    preloadedState,
 })
 
 describe("Rating component", () => {
@@ -29,6 +36,7 @@ describe("Rating component", () => {
                 <Rating setMinRating={mockSetMinRating}/>
             </Provider>
         )
+
 
         const checkBoxList = screen.getAllByRole("checkbox");
         checkBoxList.forEach((checkBox, idx) => {
