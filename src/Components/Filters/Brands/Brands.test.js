@@ -1,18 +1,21 @@
-import {configureStore} from "@reduxjs/toolkit";
 import filtersReducer from "../../../State manager/FiltersReducer";
+import {configureStore} from "@reduxjs/toolkit";
 import {describe, expect, test} from "@jest/globals";
-import {Provider} from "react-redux";
-import Categories from "./Categories";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {Provider} from "react-redux";
+import Brands from "./Brands";
 
 const preloadedState = {
     filters: {
-        categories: {
-            Electronics: false, Footwear: false, Clothing: false,
-            Sports: false, Home: false,
+        brands: {
+            "Brands A": false, "Brands B": false, "Brands C": false, "Brands D": false,
+            "Brands E": false, "Brands F": false, "Brands G": false, "Brands H": false,
+            "Brands I": false, "Brands J": false, "Brands K": false, "Brands L": false,
+            "Brands M": false, "Brands N": false, "Brands O": false, "Brands P": false,
+            "Brands Q": false, "Brands R": false, "Brands S": false, "Brands T": false,
         },
-        categoriesLength: 9,
-    }
+        brandsLength: 20,
+    },
 }
 
 const store = configureStore({
@@ -20,9 +23,9 @@ const store = configureStore({
         filters: filtersReducer,
     },
     preloadedState,
-});
+})
 
-describe("Categories component", () => {
+describe("Brands component", () => {
     test("render without content", () => {
         const store = configureStore({
             reducer: {
@@ -30,17 +33,17 @@ describe("Categories component", () => {
             },
             preloadedState: {
                 filters: {
-                    categories: {},
-                    categoriesLength: 0,
+                    brands: {},
+                    brandsLength: 0,
                 }
             },
         });
         render(
             <Provider store={store}>
-                <Categories/>
+                <Brands/>
             </Provider>
         )
-        const text = screen.getByText(/categories/i);
+        const text = screen.getByText(/brands/i);
         const showMoreButton = screen.queryByText(/Show more/i);
         const hideButton = screen.queryByText(/Hide/i);
         expect(showMoreButton).toBeNull();
@@ -50,10 +53,11 @@ describe("Categories component", () => {
     test("render with content", () => {
         render(
             <Provider store={store}>
-                <Categories/>
+                <Brands/>
             </Provider>
         )
-        const text = screen.getByText(/categories/i);
+        const allTextBrands = screen.getAllByText(/brands/i);
+        const text = allTextBrands.find((el) => (el.tagName === "B"))
         const checkBoxes = screen.getAllByRole("checkbox");
         expect(text).toBeInTheDocument();
         expect(checkBoxes).toBeDefined();
@@ -61,9 +65,10 @@ describe("Categories component", () => {
     test("Show and hide buttons work correctly", async () => {
         render(
             <Provider store={store}>
-                <Categories/>
+                <Brands/>
             </Provider>
         )
+
         const showMoreButton = screen.getByText(/Show more/i);
         expect(showMoreButton).toBeInTheDocument();
         await waitFor(() => {

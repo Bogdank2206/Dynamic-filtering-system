@@ -10,7 +10,7 @@ const Brands = ({brands, brandsLength, toggleBrandChecked}) => {
     useEffect(() => {
         if (length < step) {
             setLength(step);
-        } else if (brandsLength < length) {
+        } else if (brandsLength && brandsLength < length) {
             setLength(brandsLength);
         }
     }, [length, brandsLength]);
