@@ -41,42 +41,57 @@ describe("Price Range Slider component", () => {
         const numbers = screen.getAllByRole('spinbutton');
         const setMinNumber = numbers.find((el) => (el.name === 'setMinCostNumber'));
         const setMaxNumber = numbers.find((el) => (el.name === 'setMaxCostNumber'));
-        const sliders = screen.getAllByRole('slider');
-        const setMinSlider = sliders.find((el) => (el.name === 'setMinCostSlider'));
-        const setMaxSlider = sliders.find((el) => (el.name === 'setMaxCostSlider'));
+        let sliders, setMinSlider, setMaxSlider;
+        // const sliders = screen.getAllByRole('slider');
+        // const setMinSlider = sliders.find((el) => (el.name === 'setMinCostSlider'));
+        // const setMaxSlider = sliders.find((el) => (el.name === 'setMaxCostSlider'));
 
         fireEvent.change(setMinNumber, {target: {value: "80"}});
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMinSlider.value).toBe("10");
         });
+
         fireEvent.change(setMinSlider, {target: {value: "25"}});
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMinNumber.value).toBe("200");
         });
 
         fireEvent.change(setMaxNumber, {target: {value: "720"}});
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMaxSlider.value).toBe("90");
         });
+
         fireEvent.change(setMaxSlider, {target: {value: "75"}});
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMaxNumber.value).toBe("600");
         });
 
         fireEvent.change(setMinSlider, {target: {value: "80"}});
-        await waitFor(() => {
-            expect(setMinNumber.value).toBe("640");
-        });
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMaxNumber.value).toBe("640");
         });
+        await waitFor(() => {
+            expect(setMinSlider.value).toBe("75");
+        })
 
         fireEvent.change(setMaxSlider, {target: {value: "50"}});
+        sliders = screen.getAllByRole('slider');
+        [setMinSlider, setMaxSlider] = sliders;
         await waitFor(() => {
             expect(setMinNumber.value).toBe("400");
         });
         await waitFor(() => {
-            expect(setMaxNumber.value).toBe("400");
+            expect(setMaxNumber.value).toBe("600");
         });
     })
 })

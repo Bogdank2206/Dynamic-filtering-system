@@ -66,7 +66,7 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
                 !showFilters && (
                     <MyButton text={'Show Filters'}
                               onClick={onClick}
-                              styles={{margin: 'min(5%,30px) auto 1%'}}
+                              styles={{maxWidth: '200px', margin: 'min(5%,30px) auto 1%'}}
                               size={'large'}/>
                 )
             }

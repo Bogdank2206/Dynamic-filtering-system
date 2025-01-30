@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import s from './PriceRangeSlider.module.css'
 import {connect} from "react-redux";
 import {setMinCost, setMaxCost} from "../../../State manager/FiltersReducer";
 import useDebounced from "../../../Hooks/useDebounced";
 import Numbers from "./Numbers/Numbers";
 import Slider from "./Slider/Slider";
+import Title from "../../../Common/Title";
 
 const PriceRangeSlider = (props) => {
     const [minCost, setMinCost] = useState(0);
@@ -27,10 +27,10 @@ const PriceRangeSlider = (props) => {
             setMaxCost(props.maxCost);
         }
     }, [props.maxCost]);
-    
+
     return (
-        <div className={s.rangeContainer}>
-            <b>Price Slider</b>
+        <div>
+            <Title>Price Slider</Title>
             <Numbers minCost={minCost}
                      maxCost={maxCost}
                      maxPrice={props.maxPrice}

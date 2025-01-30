@@ -32,10 +32,10 @@ const Filters = ({users, getUsersData, setShowFilters}) => {
     })
 
     return (
-        <div style={{borderRight: bottomRight && '0.5vw solid black'}} className={s.filters}>
+        <div style={{borderRight: bottomRight && '0.3vw solid black'}} className={s.filters}>
             <MyButton text={'Hide Filters'}
                       onClick={onClick}
-                      styles={{margin: '5% auto'}}
+                      styles={{marginTop: '3%'}}
                       size={'large'}/>
             <Categories/>
             <Brands/>

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import {toggleCategoryChecked} from "../../../State manager/FiltersReducer";
-import s from './Categories.module.css'
-import CheckBox from "../../../Common/CheckBox";
 import MyButton from "../../../Common/MyButton";
+import Title from "../../../Common/Title";
+import ProductList from "../../../Common/ProductList";
 
 const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
     const step = 3;
@@ -27,19 +27,13 @@ const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
     }
     return (
         !categories
-            ? <div className={s.categories}>Categories</div>
+            ? <div style={{margin: '3% auto'}}>Categories</div>
             : (
-                <div className={s.categories}>
-                    <b>Categories</b>
-                    {
-                        Array.from({...Object.keys(categories), length}, (name, idx) => (
-                            <CheckBox key={idx}
-                                      name={name}
-                                      isChecked={categories[name]}
-                                      toggleChecked={toggleCategoryChecked}/>
-                        ))
-                    }
-
+                <div style={{margin: '3% auto'}}>
+                    <Title>Categories</Title>
+                    <ProductList list={categories}
+                                 length={length}
+                                 toggleChecked={toggleCategoryChecked}/>
                     {length < categoriesLength && <MyButton text={'Show More'} onClick={ShowMore}/>}
                     {length > step && <MyButton text={'Hide'} onClick={Hide}/>}
                 </div>

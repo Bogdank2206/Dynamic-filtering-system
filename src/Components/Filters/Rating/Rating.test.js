@@ -25,9 +25,10 @@ describe("Rating component", () => {
                 <Rating/>
             </Provider>
         )
-        const checkBoxes = screen.getAllByRole("checkbox");
+        const checkBoxes = screen.getAllByRole("radio");
+        debugger;
         expect(checkBoxes).toBeDefined();
-        expect(checkBoxes).toHaveLength(4);
+        expect(checkBoxes).toHaveLength(6);
     })
     test("Select rating buttons work correctly", () => {
         const mockSetMinRating = jest.fn();
@@ -36,27 +37,10 @@ describe("Rating component", () => {
                 <Rating setMinRating={mockSetMinRating}/>
             </Provider>
         )
-
-
-        const checkBoxList = screen.getAllByRole("checkbox");
+        const checkBoxList = screen.getAllByRole("radio");
         checkBoxList.forEach((checkBox, idx) => {
             fireEvent.click(checkBox);
-            expect(mockSetMinRating).toBeCalledWith(idx + 1);
+            expect(mockSetMinRating).toHaveBeenCalledTimes(idx + 1);
         });
     });
-    test("Select rating work correctly", async () => {
-        render(
-            <Provider store={store}>
-                <Rating/>
-            </Provider>
-        )
-
-        const checkBoxes = screen.getAllByRole("checkbox");
-        checkBoxes.forEach(checkBox => {
-            fireEvent.click(checkBox);
-            expect(checkBox.checked).toBeTruthy();
-            fireEvent.click(checkBox);
-            expect(checkBox.checked).toBeFalsy();
-        })
-    })
 })

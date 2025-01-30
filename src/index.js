@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import store from './State manager/store'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <App/>
+    <Provider store={store}>
+        <App/>
+    </Provider>
 );
 
 

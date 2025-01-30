@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import s from './Brands.module.css'
 import {connect} from "react-redux";
 import {toggleBrandChecked} from "../../../State manager/FiltersReducer";
-import CheckBox from "../../../Common/CheckBox";
-import {Button, Grid2} from "@mui/material";
 import MyButton from "../../../Common/MyButton";
+import Title from "../../../Common/Title";
+import ProductList from "../../../Common/ProductList";
 
 const Brands = ({brands, brandsLength, toggleBrandChecked}) => {
     const step = 3;
@@ -30,18 +29,13 @@ const Brands = ({brands, brandsLength, toggleBrandChecked}) => {
 
     return (
         !brands
-            ? <div className={s.brands}>Brands</div>
+            ? <div style={{margin: '3% auto'}}>Brands</div>
             : (
-                <div className={s.brands}>
-                    <b>Brands</b>
-                    {
-                        Object.keys(brands).slice(0, length).map(name => (
-                            <CheckBox key={name}
-                                      name={name}
-                                      isChecked={brands[name]}
-                                      toggleChecked={toggleBrandChecked}/>
-                        ))
-                    }
+                <div style={{margin: '3% auto'}}>
+                    <Title>Brands</Title>
+                    <ProductList list={brands}
+                                 length={length}
+                                 toggleChecked={toggleBrandChecked}/>
                     {length < brandsLength && <MyButton text={'Show More'} onClick={ShowMore}/>}
                     {length > step && <MyButton text={'Hide'} onClick={Hide}/>}
                 </div>

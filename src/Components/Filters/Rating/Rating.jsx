@@ -1,28 +1,19 @@
 import React from "react";
-import s from './Rating.module.css'
 import {connect} from "react-redux";
 import {setMinRating} from "../../../State manager/FiltersReducer";
+import {Rating} from "@mui/material";
+import Title from "../../../Common/Title";
 
-const Rating = ({minRating, setMinRating}) => {
-    const numbers = [1, 2, 3, 4];
+const RatingComponent = ({minRating, setMinRating}) => {
+    const onChange = (event, newValue) => {
+        setMinRating(newValue);
+    }
     return (
-        <div className={s.rating}>
-            <b>Rating</b>
-            {
-                numbers.map(num => (
-                    <div key={num}>
-                        <input id={num}
-                               type='checkbox'
-                               checked={num === minRating}
-                               onChange={() => {
-                                   num === minRating
-                                       ? setMinRating(0)
-                                       : setMinRating(num);
-                               }}/>
-                        <span>{num} и выше</span>
-                    </div>
-                ))
-            }
+        <div style={{margin: '0 auto'}}>
+            <Title>Rating</Title>
+            <Rating size='large'
+                    value={minRating}
+                    onChange={onChange}/>
         </div>
     )
 }
@@ -37,4 +28,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     ...ownProps,
 })
 
-export default connect(mapStateToProps, {setMinRating}, mergeProps)(Rating);
+export default connect(mapStateToProps, {setMinRating}, mergeProps)(RatingComponent);

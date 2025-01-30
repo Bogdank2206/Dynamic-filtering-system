@@ -3,8 +3,6 @@ import Product from "./Components/Product/Product";
 import React, {useState, Suspense, useEffect} from "react";
 import filtersStyle from './Components/Filters/Filters.module.css'
 import Header from "./Components/Header/Header";
-import {Provider} from "react-redux";
-import store from './State manager/store'
 
 const Filters = React.lazy(() => import("./Components/Filters/Filters"));
 
@@ -42,24 +40,19 @@ const App = () => {
     });
 
     return (
-        <div style={{gridTemplateAreas}} className={s.app}>
+        <div style={{gridTemplateAreas}}
+             className={s.app}>
             <Header/>
             {
-                showFilters && (
-                    <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
+                showFilters
+                    ? <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
                         <Filters setShowFilters={setShowFilters}/>
                     </Suspense>
-                )
+                    : null
             }
             <Product showFilters={showFilters} setShowFilters={setShowFilters}/>
         </div>
     )
 }
 
-const AppContainer = () => (
-    <Provider store={store}>
-        <App/>
-    </Provider>
-)
-
-export default AppContainer;
+export default App;

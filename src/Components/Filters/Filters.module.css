@@ -1,9 +1,8 @@
 .filters {
-    background-color: #603c3c;
+    background-color: #9bc38c;
     grid-area: f;
     justify-content: center;
     text-align: center;
-
-    border-top: 0.5vw solid black;
+    border-top: 0.3vw solid black;
     height: 100%;
 }
