@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import s from './Brands.module.css'
 import {connect} from "react-redux";
 import {toggleBrandChecked} from "../../../State manager/FiltersReducer";
-import CheckBox from "../CheckBox";
+import CheckBox from "../../../Common/CheckBox";
+import {Button, Grid2} from "@mui/material";
+import MyButton from "../../../Common/MyButton";
 
 const Brands = ({brands, brandsLength, toggleBrandChecked}) => {
     const step = 3;
@@ -40,8 +42,8 @@ const Brands = ({brands, brandsLength, toggleBrandChecked}) => {
                                       toggleChecked={toggleBrandChecked}/>
                         ))
                     }
-                    {length < brandsLength && <button className={s.button} onClick={ShowMore}>Show more</button>}
-                    {length > step && <button className={s.button} onClick={Hide}>Hide</button>}
+                    {length < brandsLength && <MyButton text={'Show More'} onClick={ShowMore}/>}
+                    {length > step && <MyButton text={'Hide'} onClick={Hide}/>}
                 </div>
             )
     )

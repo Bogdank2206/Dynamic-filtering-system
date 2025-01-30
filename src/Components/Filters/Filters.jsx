@@ -6,6 +6,7 @@ import Rating from "./Rating/Rating";
 import s from './Filters.module.css'
 import {getUsersData} from "../../State manager/FiltersReducer";
 import {connect} from "react-redux";
+import MyButton from "../../Common/MyButton";
 
 const Filters = ({users, getUsersData, setShowFilters}) => {
     const onClick = () => {
@@ -32,7 +33,10 @@ const Filters = ({users, getUsersData, setShowFilters}) => {
 
     return (
         <div style={{borderRight: bottomRight && '0.5vw solid black'}} className={s.filters}>
-            <button className={s.button} onClick={onClick}>Hide Filters</button>
+            <MyButton text={'Hide Filters'}
+                      onClick={onClick}
+                      styles={{margin: '5% auto'}}
+                      size={'large'}/>
             <Categories/>
             <Brands/>
             <PriceRangeSlider/>

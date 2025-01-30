@@ -45,13 +45,11 @@ const App = () => {
         <div style={{gridTemplateAreas}} className={s.app}>
             <Header/>
             {
-                showFilters
-                    ? (
-                        <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
-                            <Filters setShowFilters={setShowFilters}/>
-                        </Suspense>
-                    )
-                    : null
+                showFilters && (
+                    <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
+                        <Filters setShowFilters={setShowFilters}/>
+                    </Suspense>
+                )
             }
             <Product showFilters={showFilters} setShowFilters={setShowFilters}/>
         </div>

@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import {toggleCategoryChecked} from "../../../State manager/FiltersReducer";
 import s from './Categories.module.css'
-import CheckBox from "../CheckBox";
+import CheckBox from "../../../Common/CheckBox";
+import MyButton from "../../../Common/MyButton";
 
 const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
     const step = 3;
@@ -39,9 +40,8 @@ const Categories = ({categories, categoriesLength, toggleCategoryChecked}) => {
                         ))
                     }
 
-                    {length < categoriesLength && <button className={s.button}
-                                                          onClick={ShowMore}>Show more</button>}
-                    {length > step && <button className={s.button} onClick={Hide}>Hide</button>}
+                    {length < categoriesLength && <MyButton text={'Show More'} onClick={ShowMore}/>}
+                    {length > step && <MyButton text={'Hide'} onClick={Hide}/>}
                 </div>
             )
     )

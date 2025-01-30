@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import s from './Product.module.css'
 import Item from "./Item/Item";
-import classNames from "classnames";
+import MyButton from "../../Common/MyButton";
 
 const Product = ({users, filters, showFilters, setShowFilters}) => {
     const step = 5;
@@ -63,9 +63,12 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
     return (
         <div className={s.product}>
             {
-                !showFilters
-                    ? <button className={s.button} onClick={onClick}>Show Filters</button>
-                    : null
+                !showFilters && (
+                    <MyButton text={'Show Filters'}
+                              onClick={onClick}
+                              styles={{margin: 'min(5%,30px) auto 1%'}}
+                              size={'large'}/>
+                )
             }
             <h1 className={s.title}>Product</h1>
             {
@@ -74,16 +77,21 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
                     : <div>Products not found</div>
             }
             {
-                length < usersWithFilters.length
-                    ? <button className={classNames(s.button, s.showButton)}
-                              onClick={showMore}>Show more</button>
-                    : null
+                length < usersWithFilters.length && (
+                    <MyButton text={'Show more'}
+                              onClick={showMore}
+                              styles={{marginBottom: '100px', minHeight: '50px'}}
+                              size={'large'}/>
+                )
             }
             {
-                length > step
-                    ? <button className={classNames(s.button, s.showButton)}
-                              onClick={Hide}>Hide</button>
-                    : null
+                length > step && (
+                    <MyButton text={'Hide'}
+                              onClick={Hide}
+                              styles={{marginBottom: '100px', minHeight: '50px'}}
+                              size={'large'}/>
+
+                )
             }
         </div>
     )
