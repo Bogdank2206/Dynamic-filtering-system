@@ -71,11 +71,15 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
                 )
             }
             <h1 className={s.title}>Product</h1>
-            {
-                usersWithFilters.length
-                    ? usersWithFilters.slice(0, length).map(user => (<Item key={user.id} {...user}/>))
-                    : <div>Products not found</div>
-            }
+            <div className={s.items}>
+                {
+                    usersWithFilters.length
+                        ? usersWithFilters.slice(0, length).map(user => (<Item key={user.id} {...user}/>))
+                        : <div>Products not found</div>
+                }
+            </div>
+
+
             {
                 length < usersWithFilters.length && (
                     <MyButton text={'Show more'}

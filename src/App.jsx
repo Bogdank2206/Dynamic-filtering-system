@@ -9,15 +9,15 @@ const Filters = React.lazy(() => import("./Components/Filters/Filters"));
 const change = (showFilters, setGridTemplateAreas) => {
     if (window.innerWidth > 480) {
         if (window.innerWidth > 600) {
-            setGridTemplateAreas(`"h h"\n"${showFilters ? 'f' : 'p'} p"`);
+            setGridTemplateAreas(`"${showFilters ? 'f' : 'p'} p"\n"${showFilters ? 'f' : 'p'} p"`);
         } else {
-            setGridTemplateAreas(`"h h"\n"${showFilters ? 'f f' : 'p p'}"\n"p p"`);
+            setGridTemplateAreas(`"${showFilters ? 'f f' : 'p p'}"\n"p p"`);
         }
     } else {
         if (showFilters) {
-            setGridTemplateAreas('"h h"\n"f f"\n"p p"');
+            setGridTemplateAreas('"f f"\n"p p"');
         } else {
-            setGridTemplateAreas('"h h"\n"p p"');
+            setGridTemplateAreas('"p p"\n"p p"');
         }
     }
 }
@@ -40,17 +40,18 @@ const App = () => {
     });
 
     return (
-        <div style={{gridTemplateAreas}}
-             className={s.app}>
+        <div>
             <Header/>
-            {
-                showFilters
-                    ? <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
-                        <Filters setShowFilters={setShowFilters}/>
-                    </Suspense>
-                    : null
-            }
-            <Product showFilters={showFilters} setShowFilters={setShowFilters}/>
+            <div style={{gridTemplateAreas}} className={s.app}>
+                {
+                    showFilters
+                        ? <Suspense fallback={<div className={filtersStyle.filters}>Loading...</div>}>
+                            <Filters setShowFilters={setShowFilters}/>
+                        </Suspense>
+                        : null
+                }
+                <Product showFilters={showFilters} setShowFilters={setShowFilters}/>
+            </div>
         </div>
     )
 }

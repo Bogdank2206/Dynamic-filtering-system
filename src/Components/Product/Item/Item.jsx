@@ -1,36 +1,45 @@
 import React, {useState} from 'react';
 import s from './Item.module.css'
 import commonLogo from '../../../Images/commonLogo.png'
+import {Card, CardContent, CardMedia, Typography} from "@mui/material";
 
-const Item = ({name, category, brand, price, rating, imageUrl}) => {
+const NewItem = ({name, category, brand, price, rating, imageUrl}) => {
     const [imageSrc, setImageSrc] = useState(imageUrl);
     const onError = () => {
         setImageSrc(commonLogo);
     }
+
     return (
-        <div className={s.item}>
-            <div className={s.logo}>
-                <img src={imageSrc} alt={name} onError={onError}/>
-            </div>
-            <div className={s.body}>
-                <div>
-                    <b>Name: </b>{name}
+        <Card className={s.item} sx={{width: '30%', maxHeight: '30%'}}>
+            <CardMedia
+                component="img"
+                className={s.img}
+                image={imageSrc}
+                alt="Product Image"
+                onError={onError}
+            />
+            <CardContent>
+                <div className={s.body}>
+                    <Typography variant={'h4'}>
+                        <b>{name}</b>
+                    </Typography>
+                    <div>
+                        <b>Category: </b>{category}
+                    </div>
+                    <div>
+                        <b>Brand: </b>{brand}
+                    </div>
+                    <div>
+                        <b>Rating: </b>{rating}
+                    </div>
+                    <div>
+                        <b>Price: </b>{price}
+                    </div>
                 </div>
-                <div>
-                    <b>Category: </b>{category}
-                </div>
-                <div>
-                    <b>Brand: </b>{brand}
-                </div>
-                <div>
-                    <b>Rating: </b>{rating}
-                </div>
-                <div>
-                    <b>Price: </b>{price}
-                </div>
-            </div>
-        </div>
+            </CardContent>
+
+        </Card>
     )
 }
 
-export default Item;
+export default NewItem;

@@ -1,6 +1,6 @@
 .header {
-    font-size: 2em;
-    padding: 10px;
-    background-color: #b8b832;
-    grid-area: h;
+    background-color: #b8b82c;
+    color: black;
+    min-height: 56px;
+    max-height: 84px;
 }
