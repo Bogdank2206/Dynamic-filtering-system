@@ -10,7 +10,7 @@ const NewItem = ({name, category, brand, price, rating, imageUrl}) => {
     }
 
     return (
-        <Card className={s.item} sx={{width: '30%', maxHeight: '30%'}}>
+        <Card className={s.item}>
             <CardMedia
                 component="img"
                 className={s.img}

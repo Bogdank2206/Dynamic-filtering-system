@@ -3,6 +3,22 @@ import {connect} from "react-redux";
 import s from './Product.module.css'
 import Item from "./Item/Item";
 import MyButton from "../../Common/MyButton";
+import {AppBar, Typography} from "@mui/material";
+
+const Title = ({children}) => {
+    const styles = {
+        textAlign: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "5%",
+        backgroundColor: "#9bc38c",
+    }
+    return <AppBar position="static" style={styles}>
+        <Typography variant={'h4'}>
+            {children}
+        </Typography>
+    </AppBar>
+}
 
 const Product = ({users, filters, showFilters, setShowFilters}) => {
     const step = 5;
@@ -70,7 +86,7 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
                               size={'large'}/>
                 )
             }
-            <h1 className={s.title}>Product</h1>
+            <Title>Product</Title>
             <div className={s.items}>
                 {
                     usersWithFilters.length

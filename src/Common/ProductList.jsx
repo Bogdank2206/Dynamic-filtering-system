@@ -13,8 +13,8 @@ const ProductList = ({list, length, toggleChecked}) => {
                     <FormControlLabel key={idx}
                                       style={styles}
                                       control={<Checkbox/>}
+                                      checked={list[name]}
                                       label={name}
-                                      isChecked={list[name]}
                                       onChange={() => toggleChecked(name)}/>
                 ))
             }
