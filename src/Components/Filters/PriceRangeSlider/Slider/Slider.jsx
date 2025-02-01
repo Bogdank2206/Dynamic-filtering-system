@@ -13,7 +13,6 @@ const mySlider = ({minCost, maxCost, maxPrice, setMinCost, setMaxCost}) => {
         setMinCost(valueCost);
     }
     const setMax = (valuePercent) => {
-        console.log(valuePercent);
         valuePercent = valuePercent >= 99 ? 100 : valuePercent;
         valuePercent = valuePercent <= 1 ? 0 : valuePercent;
         const valueCost = Math.ceil(valuePercent * maxPrice) / 100;

@@ -11,6 +11,7 @@ const Title = ({children}) => {
         justifyContent: "center",
         width: "100%",
         height: "5%",
+        minHeight: "50px",
         backgroundColor: "#9bc38c",
     }
     return <AppBar position="static" style={styles}>
@@ -78,6 +79,7 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
 
     return (
         <div className={s.product}>
+            <Title>Product</Title>
             {
                 !showFilters && (
                     <MyButton text={'Show Filters'}
@@ -86,12 +88,11 @@ const Product = ({users, filters, showFilters, setShowFilters}) => {
                               size={'large'}/>
                 )
             }
-            <Title>Product</Title>
             <div className={s.items}>
                 {
                     usersWithFilters.length
                         ? usersWithFilters.slice(0, length).map(user => (<Item key={user.id} {...user}/>))
-                        : <div>Products not found</div>
+                        : <h2>Products not found</h2>
                 }
             </div>
 
